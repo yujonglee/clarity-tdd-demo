@@ -6,9 +6,13 @@ describe('Counter', () => {
   let client: Client;
   let provider: Provider;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     provider = await ProviderRegistry.createProvider();
     client = new Client('SP3GWX3NE58KXHESRYE4DYQ1S31PQJTCRXB3PE9SB.counter', 'counter', provider);
+  });
+
+  afterAll(async () => {
+    provider.close();
   });
 
   it('has valid syntax', async () => {
