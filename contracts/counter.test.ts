@@ -26,6 +26,21 @@ describe('Counter', () => {
       return result;
     };
 
+    const execMethod = async (method: string) => {
+      const tx = client.createTransaction({
+        method: {
+          name: method,
+          args: [],
+        },
+      });
+
+      await tx.sign('SP2J6ZY48GV1EZ5V2V5RB9MP66SW86PYKKNRV9EJ7');
+
+      const receipt = await client.submitTransaction(tx);
+
+      return receipt;
+    };
+
     beforeEach(async () => {
       await client.deployContract();
     });
@@ -34,6 +49,15 @@ describe('Counter', () => {
       const value = await getCounter();
 
       expect(value).toBe(0);
+    });
+
+    it('increases by increment method', async () => {
+      const before = await getCounter();
+      await execMethod('increment');
+
+      const after = await getCounter();
+
+      expect(after - before).toBe(1);
     });
   });
 });
