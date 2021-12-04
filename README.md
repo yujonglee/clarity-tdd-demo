@@ -1,4 +1,4 @@
-# Clarity-TDD
+# Clarity-TDD-Demo
 This is demo / template for developing Clarity contracts with TDD.
 
 Originally started from [official docs](https://github.com/clarity-lang/overview).
