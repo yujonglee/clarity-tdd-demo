@@ -8,6 +8,10 @@
     (ok (var-get counter))))
 
 ;; decrement method
+(define-public (decrement)
+  (begin
+    (var-set counter (- (var-get counter) 1))
+    (ok (var-get counter))))
 
 ;; counter getter
 (define-public (get-counter)

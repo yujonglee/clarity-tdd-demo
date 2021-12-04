@@ -59,5 +59,28 @@ describe('Counter', () => {
 
       expect(after - before).toBe(1);
     });
+
+    describe('when counter is zero', () => {
+      it('cannot decrease counter', async () => {
+        const initial = await getCounter();
+        expect(initial).toBe(0);
+
+        await execMethod('decrement');
+
+        expect(getCounter()).rejects.toBeDefined();
+      });
+    });
+
+    describe('when counter is not zero', () => {
+      it('increases by increment method', async () => {
+        await execMethod('increment');
+        const before = await getCounter();
+
+        await execMethod('decrement');
+        const after = await getCounter();
+
+        expect(after - before).toBe(-1);
+      });
+    });
   });
 });
