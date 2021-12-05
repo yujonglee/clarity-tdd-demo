@@ -11,7 +11,7 @@ describe('Counter', () => {
     client = new Client('SP3GWX3NE58KXHESRYE4DYQ1S31PQJTCRXB3PE9SB.counter', 'counter', provider);
   });
 
-  beforeEach(async () => {
+  afterEach(async () => {
     provider.close();
   });
 
